@@ -11,6 +11,10 @@ namespace StarterMvc.Web.Controllers
 {
     public class UsersProfileController : Controller
     {
+        public UsersProfileController()
+        {
+
+        }
         public UsersProfileController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
@@ -36,16 +40,18 @@ namespace StarterMvc.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(UsersProfileController model)
+        public async Task<ActionResult> Edit(UserProfile model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>());
+
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
+                model = user.Profile;
             }
 
             return View(model);

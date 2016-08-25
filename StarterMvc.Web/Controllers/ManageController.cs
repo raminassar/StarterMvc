@@ -12,6 +12,7 @@ namespace StarterMvc.Web.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        ApplicationDbContext _context = new ApplicationDbContext();
         public ManageController()
         {
         }
@@ -253,6 +254,37 @@ namespace StarterMvc.Web.Controllers
             return View(model);
         }
 
+        //
+        // GET: /Manage/Profile
+        public async Task<ActionResult> Profile()
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>());
+
+            return View(user.Profile);
+        }
+        // POST: /Manage/Profile
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Profile(UserProfile model)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>());
+            if (user != null)
+            {
+                var userProfile = _context.UserProfiles.SingleOrDefault(x => x.Id == model.Id);
+                userProfile.FirstName = model.FirstName;
+                userProfile.LastName = model.LastName;
+                userProfile.UserPhoto = model.UserPhoto;
+
+                _context.SaveChanges();
+            }
+            //return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+            //AddErrors(result);
+            return View(model);
+        }
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
