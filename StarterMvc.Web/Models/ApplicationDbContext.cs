@@ -12,6 +12,8 @@ namespace StarterMvc.Web.Models
         {
         }
 
+        public DbSet<UserProfile> UserProfiles { get; set; }
+
         static ApplicationDbContext()
         {
             Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
