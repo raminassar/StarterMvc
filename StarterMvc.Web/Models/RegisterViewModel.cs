@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace StarterMvc.Web.Models
 {
@@ -6,6 +7,7 @@ namespace StarterMvc.Web.Models
     {
         [Required]
         [Display(Name = "User Name")]
+        [Remote("IsUserExists", "Account", HttpMethod = "POST", ErrorMessage = "User name alreay exists.")]
         public string UserName { get; set; }
 
         [Required]
@@ -29,7 +31,7 @@ namespace StarterMvc.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 }

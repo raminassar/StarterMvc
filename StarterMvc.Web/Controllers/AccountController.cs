@@ -177,6 +177,13 @@ namespace StarterMvc.Web.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public JsonResult IsUserExists(string userName)
+        {
+            ApplicationDbContext _context = new ApplicationDbContext();
+            return Json(!_context.Users.Any(x => x.UserName == userName), JsonRequestBehavior.AllowGet);
+        }
 
         //
         // GET: /Account/ConfirmEmail
