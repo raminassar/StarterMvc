@@ -12,7 +12,7 @@ namespace StarterMvc.Web.Models
         {
         }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public IDbSet<UserProfile> UserProfiles { get; set; }
 
         static ApplicationDbContext()
         {
@@ -25,6 +25,8 @@ namespace StarterMvc.Web.Models
         }
 
         public virtual IDbSet<ApplicationGroup> ApplicationGroups { get; set; }
+        public virtual IDbSet<Document> Documents { get; set; }
+        public virtual IDbSet<DocumentType> DocumentTypes { get; set; }
 
         // Override OnModelsCreating:
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -10,7 +10,7 @@
 <header class="main-header">
     <!-- Logo -->
     <a href="@Url.Action("Index", "Home")">
-        <img src="@Url.Content("~/Content/Images/logo_SixConstruct_small.png")" class="logo" />
+        <img src="@Url.Content("~/Content/Images/logo_sixconstruct_small.png")" class="logo" />
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -253,9 +253,18 @@
                                     <a href="@Url.Action("ChangePassword", "Manage")" class="btn btn-default btn-flat">Password</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="@Url.Action("Logoff", "Account")" class="btn btn-default btn-flat">Sign out</a>
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post,new { id = "logoutForm" }))
+                                    {
+
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit()"class="btn btn-default btn-flat">Sign out</a>
+
+                                    }
                                 </div>
-                            </li>
+                                    @*<div class="col-xs-4 text-center">
+                                        <a href="@Url.Action("LogOff", "Account")" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>*@
+</li>
                         </ul>
                     </li>
                 }

@@ -753,6 +753,12 @@
     <Content Include="Views\Shared\_AdminLteBreadcrumb.cshtml" />
     <Content Include="Views\AdminLte\Index.cshtml" />
     <Content Include="Views\AdminLte\Colors.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\DocumentType\Create.cshtml" />
+    <Content Include="Views\DocumentType\Delete.cshtml" />
+    <Content Include="Views\DocumentType\Details.cshtml" />
+    <Content Include="Views\DocumentType\Edit.cshtml" />
+    <Content Include="Views\DocumentType\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -817,6 +823,8 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminLteController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\DocumentTypeController.cs" />
     <Compile Include="Controllers\GroupsAdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -830,11 +838,21 @@
     <Compile Include="Migrations\201608250108015_AddUsersProfile.Designer.cs">
       <DependentUpon>201608250108015_AddUsersProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608270719437_DocumentsTable.cs" />
+    <Compile Include="Migrations\201608270719437_DocumentsTable.Designer.cs">
+      <DependentUpon>201608270719437_DocumentsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608270826335_AddDocumentType.cs" />
+    <Compile Include="Migrations\201608270826335_AddDocumentType.Designer.cs">
+      <DependentUpon>201608270826335_AddDocumentType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\InitialMigration.cs" />
     <Compile Include="Migrations\InitialMigration.Designer.cs">
       <DependentUpon>InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
@@ -872,10 +890,17 @@
     <Compile Include="Models\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DocumentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608250108015_AddUsersProfile.resx">
       <DependentUpon>201608250108015_AddUsersProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608270719437_DocumentsTable.resx">
+      <DependentUpon>201608270719437_DocumentsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608270826335_AddDocumentType.resx">
+      <DependentUpon>201608270826335_AddDocumentType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitialMigration.resx">
       <DependentUpon>InitialMigration.cs</DependentUpon>

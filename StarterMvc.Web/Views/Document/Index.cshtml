@@ -1,0 +1,78 @@
+﻿@model StarterMvc.Web.ViewModels.DocumentViewModel
+@{
+    ViewBag.Title = "Admin. Document Management System (ADMS)";
+}
+
+@using (Html.BeginForm("Index","Document",FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Search</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeNumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.EmployeeNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeNumber)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocumentTypeId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DocumentTypeId, new SelectList(Model.DocumentTypes, "Id","CodeAndDescription"),"Select Document Type", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DocumentTypeId)
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContentType)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Documents)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalDocumentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentType)
+            </td>            
+            <td>
+                <a href="@Url.Action("Download", "Document", new {id = item.Id})" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
