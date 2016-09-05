@@ -41,7 +41,14 @@
     <![endif]-->
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body class="skin-blue sidebar-mini sidebar-collapse">
+@{
+    string bodyClass = "skin-blue sidebar-mini sidebar-collapse";
+    if (Session["Theme"] != null && Session["Theme"].ToString() != "")
+    {
+        bodyClass = string.Format("{0} {1}", Session["Theme"], " sidebar-mini sidebar-collapse");
+    }
+}
+<body class="@bodyClass">
 
     <div class="wrapper">
 

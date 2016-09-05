@@ -864,6 +864,10 @@
     <Compile Include="Migrations\201609041409136_AddingCreatedDateToDocuments.Designer.cs">
       <DependentUpon>201609041409136_AddingCreatedDateToDocuments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609051100249_AddingUserProfileTheme.cs" />
+    <Compile Include="Migrations\201609051100249_AddingUserProfileTheme.Designer.cs">
+      <DependentUpon>201609051100249_AddingUserProfileTheme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\InitialMigration.cs" />
     <Compile Include="Migrations\InitialMigration.Designer.cs">
       <DependentUpon>InitialMigration.cs</DependentUpon>
@@ -909,6 +913,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DocumentViewModel.cs" />
+    <Compile Include="ViewModels\ManageAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608250108015_AddUsersProfile.resx">
@@ -922,6 +927,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609041409136_AddingCreatedDateToDocuments.resx">
       <DependentUpon>201609041409136_AddingCreatedDateToDocuments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609051100249_AddingUserProfileTheme.resx">
+      <DependentUpon>201609051100249_AddingUserProfileTheme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitialMigration.resx">
       <DependentUpon>InitialMigration.cs</DependentUpon>

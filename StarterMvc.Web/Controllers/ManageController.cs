@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StarterMvc.Web.Models;
+using StarterMvc.Web.ViewModels;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -234,7 +235,7 @@ namespace StarterMvc.Web.Controllers
         // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<ActionResult> ChangePassword(ManageAccountViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -259,13 +260,19 @@ namespace StarterMvc.Web.Controllers
         public async Task<ActionResult> Profile()
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>());
+            ManageAccountViewModel manageUser = new ManageAccountViewModel();
+            manageUser.Id = user.Profile.Id;
+            manageUser.FirstName = user.Profile.FirstName;
+            manageUser.LastName = user.Profile.LastName;
+            manageUser.UserPhoto = user.Profile.UserPhoto;
+            manageUser.Theme = user.Profile.Theme;
 
-            return View(user.Profile);
+            return View(manageUser);
         }
         // POST: /Manage/Profile
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Profile(UserProfile model)
+        public async Task<ActionResult> Profile(ManageAccountViewModel model, HttpPostedFileBase upload)
         {
             //if (!ModelState.IsValid)
             //{
@@ -277,13 +284,46 @@ namespace StarterMvc.Web.Controllers
                 var userProfile = _context.UserProfiles.SingleOrDefault(x => x.Id == model.Id);
                 userProfile.FirstName = model.FirstName;
                 userProfile.LastName = model.LastName;
-                userProfile.UserPhoto = model.UserPhoto;
+                userProfile.Theme = model.Theme;
+
+                if (upload != null && upload.ContentLength > 0 && upload.FileName != string.Empty)
+                {
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        userProfile.UserPhoto = reader.ReadBytes(upload.ContentLength);
+                    }
+                }
 
                 _context.SaveChanges();
+
+                // Update user data sessions
+                Session["FullName"] = string.Concat(new string[] { model.FirstName, " ", model.LastName });
+                Session["Email"] = user.Email;
+                Session["Theme"] = model.Theme;
             }
             //return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             //AddErrors(result);
             return View(model);
+        }
+
+        public ActionResult RetrieveImage(int id)
+        {
+            byte[] cover = GetImageFromDataBase(id);
+            if (cover != null)
+            {
+                return File(cover, "image/jpg");
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public byte[] GetImageFromDataBase(int id)
+        {
+            var userProfile = _context.UserProfiles.SingleOrDefault(x => x.Id == id);
+            byte[] cover = userProfile.UserPhoto;
+            return cover;
         }
         //
         // GET: /Manage/SetPassword

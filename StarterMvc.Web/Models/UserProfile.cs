@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StarterMvc.Web.Models
@@ -11,5 +12,7 @@ namespace StarterMvc.Web.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public byte[] UserPhoto { get; set; }
+        [DefaultValue("skin-blue")]
+        public string Theme { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     ViewBag.Title = "Admin. Document Management System (ADMS)";
 }
 
-@using (Html.BeginForm("Index","Document",FormMethod.Get))
+@using (Html.BeginForm("Index", "Document", FormMethod.Get))
 {
     @Html.AntiForgeryToken()
 
@@ -21,10 +21,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DocumentTypeId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DocumentTypeId, new SelectList(Model.DocumentTypes, "Id","CodeAndDescription"),"Select Document Type", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.DocumentTypeId, new SelectList(Model.DocumentTypes, "Id", "CodeAndDescription"), "Select Document Type", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DocumentTypeId)
             </div>
-        </div>        
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Search" class="btn btn-default" />
@@ -41,7 +42,7 @@
         <th>
             @Html.DisplayNameFor(model => model.DocumentName)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.DocumentType)
         </th>

@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StarterMvc.Web.Models;
+using StarterMvc.Web.ViewModels;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -40,7 +41,7 @@ namespace StarterMvc.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(UserProfile model)
+        public async Task<ActionResult> Edit(ManageAccountViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -51,7 +52,10 @@ namespace StarterMvc.Web.Controllers
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
-                model = user.Profile;
+                model.FirstName = user.Profile.FirstName;
+                model.LastName = user.Profile.LastName;
+                model.Theme = user.Profile.Theme;
+                model.UserPhoto = user.Profile.UserPhoto;
             }
 
             return View(model);
