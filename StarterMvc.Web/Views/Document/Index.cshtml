@@ -48,7 +48,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ContentType)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
         <th></th>
     </tr>
 
@@ -66,7 +68,10 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ContentType)
-            </td>            
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
             <td>
                 <a href="@Url.Action("Download", "Document", new {id = item.Id})" class="btn btn-warning">
                     <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
@@ -76,3 +81,5 @@
     }
 
 </table>
+
+

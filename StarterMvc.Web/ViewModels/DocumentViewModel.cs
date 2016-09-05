@@ -1,4 +1,5 @@
 ﻿using StarterMvc.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,6 +17,8 @@ namespace StarterMvc.Web.ViewModels
 
         public string Content { get; set; }
         public string ContentType { get; set; }
+        [Display(Name = "Created Date")]
+        public DateTime CreatedDate { get; set; }
 
         public string DocumentType { get; set; }
         public IEnumerable<Document> Documents { get; set; }

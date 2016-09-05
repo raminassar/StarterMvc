@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StarterMvc.Web.Models
@@ -18,5 +19,7 @@ namespace StarterMvc.Web.Models
         [ForeignKey("DocumentTypeId")]
         public virtual DocumentType DocumentType { get; set; }
         public string EmployeeNumber { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

@@ -184,16 +184,28 @@
     <Content Include="Content\AdminLTE\img\user6-128x128.jpg" />
     <Content Include="Content\AdminLTE\img\user7-128x128.jpg" />
     <Content Include="Content\AdminLTE\img\user8-128x128.jpg" />
+    <Content Include="Content\AdminLTE\skins\skin-black-light.css" />
+    <Content Include="Content\AdminLTE\skins\skin-black-light.min.css" />
     <Content Include="Content\AdminLTE\skins\skin-black.css" />
     <Content Include="Content\AdminLTE\skins\skin-black.min.css" />
+    <Content Include="Content\AdminLTE\skins\skin-blue-light.css" />
+    <Content Include="Content\AdminLTE\skins\skin-blue-light.min.css" />
     <Content Include="Content\AdminLTE\skins\skin-blue.css" />
     <Content Include="Content\AdminLTE\skins\skin-blue.min.css" />
+    <Content Include="Content\AdminLTE\skins\skin-green-light.css" />
+    <Content Include="Content\AdminLTE\skins\skin-green-light.min.css" />
     <Content Include="Content\AdminLTE\skins\skin-green.css" />
     <Content Include="Content\AdminLTE\skins\skin-green.min.css" />
+    <Content Include="Content\AdminLTE\skins\skin-purple-light.css" />
+    <Content Include="Content\AdminLTE\skins\skin-purple-light.min.css" />
     <Content Include="Content\AdminLTE\skins\skin-purple.css" />
     <Content Include="Content\AdminLTE\skins\skin-purple.min.css" />
+    <Content Include="Content\AdminLTE\skins\skin-red-light.css" />
+    <Content Include="Content\AdminLTE\skins\skin-red-light.min.css" />
     <Content Include="Content\AdminLTE\skins\skin-red.css" />
     <Content Include="Content\AdminLTE\skins\skin-red.min.css" />
+    <Content Include="Content\AdminLTE\skins\skin-yellow-light.css" />
+    <Content Include="Content\AdminLTE\skins\skin-yellow-light.min.css" />
     <Content Include="Content\AdminLTE\skins\skin-yellow.css" />
     <Content Include="Content\AdminLTE\skins\skin-yellow.min.css" />
     <Content Include="Content\AdminLTE\skins\_all-skins.css" />
@@ -831,6 +843,8 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Controllers\UsersProfileController.cs" />
+    <Compile Include="Core\Repositories\BaseRepository.cs" />
+    <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -845,6 +859,10 @@
     <Compile Include="Migrations\201608270826335_AddDocumentType.cs" />
     <Compile Include="Migrations\201608270826335_AddDocumentType.Designer.cs">
       <DependentUpon>201608270826335_AddDocumentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609041409136_AddingCreatedDateToDocuments.cs" />
+    <Compile Include="Migrations\201609041409136_AddingCreatedDateToDocuments.Designer.cs">
+      <DependentUpon>201609041409136_AddingCreatedDateToDocuments.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\InitialMigration.cs" />
     <Compile Include="Migrations\InitialMigration.Designer.cs">
@@ -901,6 +919,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608270826335_AddDocumentType.resx">
       <DependentUpon>201608270826335_AddDocumentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609041409136_AddingCreatedDateToDocuments.resx">
+      <DependentUpon>201609041409136_AddingCreatedDateToDocuments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitialMigration.resx">
       <DependentUpon>InitialMigration.cs</DependentUpon>
