@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using StarterMvc.Web.Models;
-using StarterMvc.Web.ViewModels;
+using StarterMvc.Web.Core.Models;
+using StarterMvc.Web.Core.ViewModels;
+using StarterMvc.Web.Persistence;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;

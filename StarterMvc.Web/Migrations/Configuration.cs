@@ -1,4 +1,4 @@
-using StarterMvc.Web.Models;
+using StarterMvc.Web.Persistence;
 using System.Data.Entity.Migrations;
 
 namespace StarterMvc.Web.Migrations

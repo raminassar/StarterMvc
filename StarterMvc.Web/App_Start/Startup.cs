@@ -3,7 +3,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using StarterMvc.Web.Models;
+using StarterMvc.Web.Core.Models;
+using StarterMvc.Web.Persistence;
 using System;
 
 namespace StarterMvc.Web

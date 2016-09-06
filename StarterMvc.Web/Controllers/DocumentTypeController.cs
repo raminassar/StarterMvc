@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using StarterMvc.Web.Core.Models;
+using StarterMvc.Web.Persistence;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using StarterMvc.Web.Models;
 
 namespace StarterMvc.Web.Controllers
 {

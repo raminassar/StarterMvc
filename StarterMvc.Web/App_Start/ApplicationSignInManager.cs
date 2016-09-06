@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using StarterMvc.Web.Models;
+using StarterMvc.Web.Core.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

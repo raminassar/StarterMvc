@@ -222,8 +222,8 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 @using Microsoft.AspNet.Identity
                 @using StarterMvc.Web
-@using StarterMvc.Web.Models.Extensions
-                @if (Request.IsAuthenticated)
+@using StarterMvc.Web.Core.Models.Extensions
+            @if (Request.IsAuthenticated)
                 {
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

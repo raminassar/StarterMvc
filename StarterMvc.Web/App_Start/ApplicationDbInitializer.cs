@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using StarterMvc.Web.Models;
+using StarterMvc.Web.Core.Models;
+using StarterMvc.Web.Persistence;
 using System.Data.Entity;
 using System.Web;
 

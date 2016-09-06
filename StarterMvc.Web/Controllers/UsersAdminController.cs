@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
-using StarterMvc.Web.Models;
+using StarterMvc.Web.Core.Models;
+using StarterMvc.Web.Core.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using StarterMvc.Web.ViewModels;
 
 namespace StarterMvc.Web.Controllers
 {
