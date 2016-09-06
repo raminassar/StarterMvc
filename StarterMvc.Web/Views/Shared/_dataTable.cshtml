@@ -1,0 +1,62 @@
+﻿@model StarterMvc.Web.Models.DataTableResult
+<script src="~/Scripts/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
+<script src="~/Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.js"></script>
+@if (Model != null && Model.Header != null)
+{
+    <table class="table table-striped table-hover" id="@Model.TableId">
+        <thead>
+
+            <tr class=" text-center text-info">
+                @foreach (var item in Model.Header.ToList())
+                {
+                    <th>@item.ToString()</th>
+
+                }
+            </tr>
+        </thead>
+    </table>
+    <div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                try {
+                    var table = $(@Model.TableId);
+                    var tableData = @Html.Raw(Model.JsonData);
+                    var tableHeader = @Html.Raw(Model.JsonHeader);
+                    oTable = $(table).dataTable(
+                                        {
+                                            "aaData": tableData,
+                                            "aoColumns": tableHeader,
+                                            "bPaginate": true,
+                                            "bLengthChange": true,
+                                            "bFilter": true,
+                                            "bSort": true,
+                                            "bInfo": true,
+                                            "bAutoWidth": false,
+                                            "bStateSave": false,
+                                            "idisplayLength": 15,
+                                            "sPaginationType": "full_numbers",
+                                            "bDeferRender": true,
+                                            "sDom": 'T<"clear">lfrtip',
+                                            "oTableTools":
+                                             {
+                                                 "sSwfPath": "../Content/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls_pdf.swf",
+
+                                                 "aButtons": [ "copy",
+                                                                 {
+                                                                     "sExtends":    "collection",
+                                                                     "sButtonText": "Save",
+                                                                     "aButtons":    [ "csv", "pdf" ]
+                                                                 }
+                                                 ]
+                                             }
+                                        });
+                }
+                catch (err) {
+                    //alert("Error in operation! " + err);
+                }
+
+            });
+        </script>
+    </div>
+}

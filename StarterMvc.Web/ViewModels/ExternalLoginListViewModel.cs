@@ -1,4 +1,4 @@
-﻿namespace StarterMvc.Web.Models
+﻿namespace StarterMvc.Web.ViewModels
 {
     public class ExternalLoginListViewModel
     {

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
 
-namespace StarterMvc.Web.Models
+namespace StarterMvc.Web.ViewModels
 {
     public class IndexViewModel
     {

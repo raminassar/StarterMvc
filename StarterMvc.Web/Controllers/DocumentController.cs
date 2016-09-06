@@ -18,6 +18,7 @@ namespace StarterMvc.Web.Controllers
             documentViewModel.Documents = _context.Documents
                 .Where(x => x.EmployeeNumber == employeeNumber &&
                       x.DocumentTypeId == documentTypeId);
+
             return View(documentViewModel);
         }
         [Authorize]

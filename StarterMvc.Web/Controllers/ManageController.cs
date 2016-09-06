@@ -295,11 +295,6 @@ namespace StarterMvc.Web.Controllers
                 }
 
                 _context.SaveChanges();
-
-                // Update user data sessions
-                Session["FullName"] = string.Concat(new string[] { model.FirstName, " ", model.LastName });
-                Session["Email"] = user.Email;
-                Session["Theme"] = model.Theme;
             }
             //return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             //AddErrors(result);

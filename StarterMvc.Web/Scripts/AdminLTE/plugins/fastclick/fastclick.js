@@ -821,8 +821,13 @@
 	 * @param {Element} layer The layer to listen on
 	 * @param {Object} [options={}] The options to override the defaults
 	 */
-	FastClick.attach = function(layer, options) {
-		return new FastClick(layer, options);
+	FastClick.attach = function (layer, options) {
+	    var msGesture = window.navigator && window.navigator.msPointerEnabled && window.MSGesture;
+	    var touchSupport = "ontouchstart" in window || msGesture || window.DocumentTouch && document instanceof DocumentTouch;
+
+	    if (touchSupport === true) {
+	        return new FastClick(layer, options);
+	    }
 	};
 
 

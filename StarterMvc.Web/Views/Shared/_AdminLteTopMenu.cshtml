@@ -222,6 +222,7 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 @using Microsoft.AspNet.Identity
                 @using StarterMvc.Web
+@using StarterMvc.Web.Models.Extensions
                 @if (Request.IsAuthenticated)
                 {
                     <li class="dropdown user user-menu">
@@ -234,8 +235,8 @@
                             <li class="user-header">
                                 <img src="~/Manage/RetrieveImage/@User.Identity.GetUserId()" class="img-circle" alt="User Image" />
                                 <p>
-                                    <b>@Session["FullName"]</b>
-                                    <small>@Session["Email"]</small>
+                                    <b>@string.Format("{0} {1}", User.Identity.GetUserFirstName(), User.Identity.GetUserLastName())</b>
+                                    <small>@User.Identity.GetUserEmail()</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace StarterMvc.Web.Models
+namespace StarterMvc.Web.ViewModels
 {
     public class GroupViewModel
     {

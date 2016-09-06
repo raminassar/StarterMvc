@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using System.Collections.Generic;
 
-namespace StarterMvc.Web.Models
+namespace StarterMvc.Web.ViewModels
 {
     public class ManageLoginsViewModel
     {

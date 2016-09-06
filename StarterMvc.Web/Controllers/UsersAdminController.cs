@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using StarterMvc.Web.ViewModels;
 
 namespace StarterMvc.Web.Controllers
 {
@@ -131,10 +132,6 @@ namespace StarterMvc.Web.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
@@ -148,7 +145,8 @@ namespace StarterMvc.Web.Controllers
             var model = new EditUserViewModel()
             {
                 Id = user.Id,
-                Email = user.Email
+                Email = user.Email,
+                UserName = user.UserName
             };
 
             foreach (var group in allGroups)
@@ -168,7 +166,7 @@ namespace StarterMvc.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(
-            [Bind(Include = "Email,Id")] EditUserViewModel editUser,
+            [Bind(Include = "UserName,Email,Id")] EditUserViewModel editUser,
             params int[] selectedGroups)
         {
             if (ModelState.IsValid)
@@ -180,7 +178,7 @@ namespace StarterMvc.Web.Controllers
                 }
 
                 // Update the User:
-                user.UserName = editUser.Email;
+                user.UserName = editUser.UserName;
                 user.Email = editUser.Email;
                 await this.UserManager.UpdateAsync(user);
 
@@ -196,10 +194,6 @@ namespace StarterMvc.Web.Controllers
 
         public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
@@ -215,11 +209,6 @@ namespace StarterMvc.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
                 var user = await UserManager.FindByIdAsync(id);
                 if (user == null)
                 {

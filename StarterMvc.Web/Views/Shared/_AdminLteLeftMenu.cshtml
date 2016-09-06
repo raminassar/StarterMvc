@@ -23,14 +23,14 @@
             </div>
         </div>*@
         <!-- search form -->
-        @*<form action="#" method="get" class="sidebar-form">
+        <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." />
+                <input type="text" name="q" class="form-control search-menu-box" placeholder="Search...">
                 <span class="input-group-btn">
                     <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
                 </span>
             </div>
-        </form>*@
+        </form>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -183,3 +183,22 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+@Scripts.Render("~/bundles/jquery")
+<script type="text/JavaScript">
+    $(document)
+        .ready(function() {
+            $(".search-menu-box")
+                .on('input',
+                    function() {
+                        var filter = $(this).val();
+                        $(".sidebar-menu > li")
+                            .each(function() {
+                                if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                                    $(this).hide();
+                                } else {
+                                    $(this).show();
+                                }
+                            });
+                    });
+        });
+</script>

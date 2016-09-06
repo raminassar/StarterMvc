@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using StarterMvc.Web.ViewModels;
 
 namespace StarterMvc.Web.Controllers
 {
@@ -35,30 +36,12 @@ namespace StarterMvc.Web.Controllers
             }
         }
 
-        [AllowAnonymous]
-        public void setUserData(string username)
-        {
-            var context = new ApplicationDbContext();
-
-            if (!string.IsNullOrEmpty(username))
-            {
-                var user = context.Users.SingleOrDefault(u => u.UserName == username);
-                string fullName = string.Concat(new string[] { user.Profile.FirstName, " ", user.Profile.LastName });
-                string email = user.Email;
-                string theme = user.Profile.Theme;
-
-                Session["FullName"] = fullName;
-                Session["Email"] = email;
-                Session["Theme"] = theme;
-            }
-        }
         //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            setUserData(User.Identity.Name);
             return View();
         }
 
@@ -82,7 +65,6 @@ namespace StarterMvc.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                setUserData(model.UserName);
                 return View(model);
             }
 
@@ -92,7 +74,6 @@ namespace StarterMvc.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    setUserData(model.UserName);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

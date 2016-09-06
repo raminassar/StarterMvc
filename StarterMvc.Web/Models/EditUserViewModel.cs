@@ -17,6 +17,10 @@ namespace StarterMvc.Web.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
         // We will still use this, so leave it here:
         public ICollection<SelectListItem> RolesList { get; set; }
 

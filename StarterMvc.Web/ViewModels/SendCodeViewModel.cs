@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StarterMvc.Web.Models
+namespace StarterMvc.Web.ViewModels
 {
     public class SendCodeViewModel
     {
