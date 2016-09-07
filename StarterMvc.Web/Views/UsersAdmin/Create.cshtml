@@ -1,9 +1,10 @@
 ﻿@model StarterMvc.Web.Core.ViewModels.RegisterViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Security Management";
+    ViewBag.TitleSmall = "Application Security Management";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>Create User</h2>
 
 @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {

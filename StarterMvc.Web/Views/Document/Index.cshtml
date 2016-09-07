@@ -1,6 +1,7 @@
 ﻿@model StarterMvc.Web.Core.ViewModels.DocumentViewModel
 @{
-    ViewBag.Title = "Admin. Document Management System (ADMS)";
+    ViewBag.Title = "ADMS";
+    ViewBag.TitleSmall = "Administration Documents Management System";
 }
 
 @using (Html.BeginForm("Index", "Document", FormMethod.Get))
@@ -8,7 +9,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Search</h4>
+        <h2>Search</h2>
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
@@ -34,7 +35,8 @@
     </div>
 }
 
-<table class="table">
+<table class="table" id="documents">
+    <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.EmployeeNumber)
@@ -54,33 +56,43 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model.Documents)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmployeeNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocumentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OriginalDocumentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                <a href="@Url.Action("Download", "Document", new {id = item.Id})" class="btn btn-warning">
-                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-                </a>
-            </td>
-        </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Documents)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OriginalDocumentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    <a href="@Url.Action("Download", "Document", new {id = item.Id})" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
 
 </table>
-
+@section scripts
+{
+    <script>
+        $(document)
+            .ready(function() {
+                $("#documents").dataTable();
+            });
+    </script>
+}
 
