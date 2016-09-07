@@ -109,8 +109,28 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin">
@@ -160,6 +180,10 @@
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -1073,6 +1097,7 @@
     <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ApplicationUserManager.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.cs" />
@@ -1088,41 +1113,43 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Controllers\UsersProfileController.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Models\OrganizationUnit.cs" />
     <Compile Include="Core\Repositories\BaseRepository.cs" />
+    <Compile Include="Core\Repositories\IOrganizationUnitRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608250108015_AddUsersProfile.cs" />
-    <Compile Include="Migrations\201608250108015_AddUsersProfile.Designer.cs">
+    <Compile Include="Persistence\Migrations\201608250108015_AddUsersProfile.cs" />
+    <Compile Include="Persistence\Migrations\201608250108015_AddUsersProfile.Designer.cs">
       <DependentUpon>201608250108015_AddUsersProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608270719437_DocumentsTable.cs" />
-    <Compile Include="Migrations\201608270719437_DocumentsTable.Designer.cs">
+    <Compile Include="Persistence\Migrations\201608270719437_DocumentsTable.cs" />
+    <Compile Include="Persistence\Migrations\201608270719437_DocumentsTable.Designer.cs">
       <DependentUpon>201608270719437_DocumentsTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608270826335_AddDocumentType.cs" />
-    <Compile Include="Migrations\201608270826335_AddDocumentType.Designer.cs">
+    <Compile Include="Persistence\Migrations\201608270826335_AddDocumentType.cs" />
+    <Compile Include="Persistence\Migrations\201608270826335_AddDocumentType.Designer.cs">
       <DependentUpon>201608270826335_AddDocumentType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609041409136_AddingCreatedDateToDocuments.cs" />
-    <Compile Include="Migrations\201609041409136_AddingCreatedDateToDocuments.Designer.cs">
+    <Compile Include="Persistence\Migrations\201609041409136_AddingCreatedDateToDocuments.cs" />
+    <Compile Include="Persistence\Migrations\201609041409136_AddingCreatedDateToDocuments.Designer.cs">
       <DependentUpon>201609041409136_AddingCreatedDateToDocuments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609051100249_AddingUserProfileTheme.cs" />
-    <Compile Include="Migrations\201609051100249_AddingUserProfileTheme.Designer.cs">
+    <Compile Include="Persistence\Migrations\201609051100249_AddingUserProfileTheme.cs" />
+    <Compile Include="Persistence\Migrations\201609051100249_AddingUserProfileTheme.Designer.cs">
       <DependentUpon>201609051100249_AddingUserProfileTheme.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609061347470_AddOrganizationUnits.cs" />
-    <Compile Include="Migrations\201609061347470_AddOrganizationUnits.Designer.cs">
+    <Compile Include="Persistence\Migrations\201609061347470_AddOrganizationUnits.cs" />
+    <Compile Include="Persistence\Migrations\201609061347470_AddOrganizationUnits.Designer.cs">
       <DependentUpon>201609061347470_AddOrganizationUnits.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\InitialMigration.cs" />
-    <Compile Include="Migrations\InitialMigration.Designer.cs">
+    <Compile Include="Persistence\Migrations\InitialMigration.cs" />
+    <Compile Include="Persistence\Migrations\InitialMigration.Designer.cs">
       <DependentUpon>InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Core\Models\DataTableResult.cs" />
     <Compile Include="Core\Models\Document.cs" />
     <Compile Include="Core\Models\DocumentType.cs" />
@@ -1162,6 +1189,8 @@
     <Compile Include="Core\Models\UserProfile.cs" />
     <Compile Include="Core\ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Core\ViewModels\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Persistence\Repositories\OrganizationUnitRepository.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1173,25 +1202,25 @@
     <Compile Include="Core\ViewModels\ManageAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608250108015_AddUsersProfile.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201608250108015_AddUsersProfile.resx">
       <DependentUpon>201608250108015_AddUsersProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608270719437_DocumentsTable.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201608270719437_DocumentsTable.resx">
       <DependentUpon>201608270719437_DocumentsTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608270826335_AddDocumentType.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201608270826335_AddDocumentType.resx">
       <DependentUpon>201608270826335_AddDocumentType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609041409136_AddingCreatedDateToDocuments.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201609041409136_AddingCreatedDateToDocuments.resx">
       <DependentUpon>201609041409136_AddingCreatedDateToDocuments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609051100249_AddingUserProfileTheme.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201609051100249_AddingUserProfileTheme.resx">
       <DependentUpon>201609051100249_AddingUserProfileTheme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609061347470_AddOrganizationUnits.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201609061347470_AddOrganizationUnits.resx">
       <DependentUpon>201609061347470_AddOrganizationUnits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\InitialMigration.resx">
+    <EmbeddedResource Include="Persistence\Migrations\InitialMigration.resx">
       <DependentUpon>InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Messages.resx">
@@ -1201,6 +1230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Core\Dtos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

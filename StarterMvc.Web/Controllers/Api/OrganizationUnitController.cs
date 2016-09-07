@@ -1,8 +1,8 @@
-﻿using StarterMvc.Web.Core.Models;
+﻿using StarterMvc.Web.Core;
+using StarterMvc.Web.Core.Models;
 using StarterMvc.Web.Persistence;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Web.Http;
 
@@ -10,24 +10,24 @@ namespace StarterMvc.Web.Controllers.Api
 {
     public class OrganizationUnitController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
         public OrganizationUnitController()
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
         }
 
         // GET /api/organizationunits
         public IEnumerable<OrganizationUnit> GetOrganizationUnitsList()
         {
-            return _context.OrganizationUnits.ToList();
+            return _unitOfWork.OrganizationUnits.GetAll();
         }
 
         // GET /api/organizationunits/1
         public IHttpActionResult GetOrganizationUnit(int id)
         {
-            var organizationUnit = _context.OrganizationUnits.SingleOrDefault(x => x.Id == id);
-
+            //var organizationUnit = _context.OrganizationUnits.SingleOrDefault(x => x.Id == id);
+            var organizationUnit = _unitOfWork.OrganizationUnits.Get(id);
             if (organizationUnit == null)
                 NotFound();
 
@@ -41,8 +41,8 @@ namespace StarterMvc.Web.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            _context.OrganizationUnits.Add(organizationUnit);
-            _context.SaveChanges();
+            _unitOfWork.OrganizationUnits.Add(organizationUnit);
+            _unitOfWork.Commit();
 
             return Created(new Uri(Request.RequestUri + "/" + organizationUnit.Id), organizationUnit);
         }
@@ -54,7 +54,7 @@ namespace StarterMvc.Web.Controllers.Api
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var organizationUnitInDb = _context.OrganizationUnits.SingleOrDefault(x => x.Id == id);
+            var organizationUnitInDb = _unitOfWork.OrganizationUnits.Get(id);
 
             if (organizationUnitInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -63,20 +63,20 @@ namespace StarterMvc.Web.Controllers.Api
             organizationUnitInDb.Description = organizationUnit.Description;
             organizationUnitInDb.IsActive = organizationUnit.IsActive;
 
-            _context.SaveChanges();
+            _unitOfWork.Commit();
         }
 
         // DELETE /api/organizationunits/1
         [HttpDelete]
         public void DeleteOrganizationUnits(int id)
         {
-            var organizationUnitInDb = _context.OrganizationUnits.SingleOrDefault(x => x.Id == id);
+            var organizationUnitInDb = _unitOfWork.OrganizationUnits.Get(id);
 
             if (organizationUnitInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            _context.OrganizationUnits.Remove(organizationUnitInDb);
-            _context.SaveChanges();
+            _unitOfWork.OrganizationUnits.Remove(organizationUnitInDb);
+            _unitOfWork.Commit();
         }
 
     }
