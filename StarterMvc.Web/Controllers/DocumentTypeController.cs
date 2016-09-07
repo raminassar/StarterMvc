@@ -1,7 +1,6 @@
-﻿using StarterMvc.Web.Core.Models;
+﻿using StarterMvc.Web.Core;
+using StarterMvc.Web.Core.Models;
 using StarterMvc.Web.Persistence;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -9,12 +8,17 @@ namespace StarterMvc.Web.Controllers
 {
     public class DocumentTypeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IUnitOfWork _unitOfWork;
+
+        public DocumentTypeController()
+        {
+            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
+        }
 
         // GET: DocumentType
         public ActionResult Index()
         {
-            return View(db.DocumentTypes.ToList());
+            return View(_unitOfWork.DocumentTypes.GetAll());
         }
 
         // GET: DocumentType/Details/5
@@ -24,7 +28,8 @@ namespace StarterMvc.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentType documentType = db.DocumentTypes.Find(id);
+
+            DocumentType documentType = _unitOfWork.DocumentTypes.Get((int)id);
             if (documentType == null)
             {
                 return HttpNotFound();
@@ -47,8 +52,8 @@ namespace StarterMvc.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.DocumentTypes.Add(documentType);
-                db.SaveChanges();
+                _unitOfWork.DocumentTypes.Add(documentType);
+                _unitOfWork.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -62,11 +67,12 @@ namespace StarterMvc.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentType documentType = db.DocumentTypes.Find(id);
+            DocumentType documentType = _unitOfWork.DocumentTypes.Get((int)id);
             if (documentType == null)
             {
                 return HttpNotFound();
             }
+
             return View(documentType);
         }
 
@@ -79,8 +85,8 @@ namespace StarterMvc.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(documentType).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(documentType).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(documentType);
@@ -93,7 +99,7 @@ namespace StarterMvc.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentType documentType = db.DocumentTypes.Find(id);
+            DocumentType documentType = _unitOfWork.DocumentTypes.Get((int)id);
             if (documentType == null)
             {
                 return HttpNotFound();
@@ -106,9 +112,9 @@ namespace StarterMvc.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DocumentType documentType = db.DocumentTypes.Find(id);
-            db.DocumentTypes.Remove(documentType);
-            db.SaveChanges();
+            DocumentType documentType = _unitOfWork.DocumentTypes.Get(id);
+            _unitOfWork.DocumentTypes.Remove(documentType);
+            _unitOfWork.Commit();
             return RedirectToAction("Index");
         }
 
@@ -116,7 +122,7 @@ namespace StarterMvc.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }

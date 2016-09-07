@@ -8,10 +8,14 @@ namespace StarterMvc.Web.Persistence
     {
         private readonly ApplicationDbContext _context;
         public IOrganizationUnitRepository OrganizationUnits { get; private set; }
+        public IDocumentTypeRepository DocumentTypes { get; private set; }
+        public IDocumentRepository Documents { get; private set; }
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             OrganizationUnits = new OrganizationUnitRepository(context);
+            DocumentTypes = new DocumentTypeRepository(context);
+            Documents = new DocumentRepository(context);
         }
 
         public void Commit()

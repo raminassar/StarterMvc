@@ -1116,6 +1116,8 @@
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Models\OrganizationUnit.cs" />
     <Compile Include="Core\Repositories\BaseRepository.cs" />
+    <Compile Include="Core\Repositories\IDocumentRepository.cs" />
+    <Compile Include="Core\Repositories\IDocumentTypeRepository.cs" />
     <Compile Include="Core\Repositories\IOrganizationUnitRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -1189,6 +1191,8 @@
     <Compile Include="Core\Models\UserProfile.cs" />
     <Compile Include="Core\ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Core\ViewModels\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Persistence\Repositories\DocumentRepository.cs" />
+    <Compile Include="Persistence\Repositories\DocumentTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\OrganizationUnitRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
