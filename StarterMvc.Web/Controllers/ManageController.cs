@@ -4,6 +4,7 @@ using Microsoft.Owin.Security;
 using StarterMvc.Web.Core.Models;
 using StarterMvc.Web.Core.ViewModels;
 using StarterMvc.Web.Persistence;
+using StarterMvc.Web.Resources;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -42,12 +43,12 @@ namespace StarterMvc.Web.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two factor provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "The phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? Messages.ChangePasswordSuccess
+                : message == ManageMessageId.SetPasswordSuccess ? Messages.SetPasswordSuccess
+                : message == ManageMessageId.SetTwoFactorSuccess ? Messages.SetTwoFactorSuccess
+                : message == ManageMessageId.Error ? Messages.Error
+                : message == ManageMessageId.AddPhoneSuccess ? Messages.AddPhoneSuccess
+                : message == ManageMessageId.RemovePhoneSuccess ? Messages.RemovePhoneSuccess
                 : "";
 
             var model = new IndexViewModel
@@ -204,7 +205,7 @@ namespace StarterMvc.Web.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
+            ModelState.AddModelError("", Messages.FailedToVerifyPhone);
             return View(model);
         }
 
@@ -358,8 +359,8 @@ namespace StarterMvc.Web.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.RemoveLoginSuccess ? Messages.RemoveLoginSuccess
+                : message == ManageMessageId.Error ? Messages.Error
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (user == null)

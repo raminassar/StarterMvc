@@ -62,10 +62,6 @@ namespace StarterMvc.Web.Controllers
         // GET: /Roles/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             var role = await RoleManager.FindByIdAsync(id);
             // Get the list of Users in this Role
             var users = new List<ApplicationUser>();

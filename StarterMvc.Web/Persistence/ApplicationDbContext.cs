@@ -1,6 +1,6 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 using StarterMvc.Web.Core.Models;
+using System.Data.Entity;
 
 namespace StarterMvc.Web.Persistence
 {
@@ -28,6 +28,7 @@ namespace StarterMvc.Web.Persistence
         public virtual IDbSet<ApplicationGroup> ApplicationGroups { get; set; }
         public virtual IDbSet<Document> Documents { get; set; }
         public virtual IDbSet<DocumentType> DocumentTypes { get; set; }
+        public virtual IDbSet<OrganizationUnit> OrganizationUnits { get; set; }
 
         // Override OnModelsCreating:
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

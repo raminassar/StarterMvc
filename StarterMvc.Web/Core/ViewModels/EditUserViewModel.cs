@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace StarterMvc.Web.Core.Models
+namespace StarterMvc.Web.Core.ViewModels
 {
     public class EditUserViewModel
     {
