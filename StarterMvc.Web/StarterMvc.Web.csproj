@@ -896,6 +896,8 @@
     <Content Include="Scripts\AdminLTE\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Scripts\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Scripts\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
