@@ -761,3 +761,43 @@ function _init() {
     });
   };
 }(jQuery));
+
+
+// DataTbales
+$.extend(true, $.fn.dataTable.defaults, {
+    dom: 'lBfrtip',
+    lengthChange: true,                        
+    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],                        
+    buttons: [
+    {
+        extend: 'excelHtml5',
+        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+        title: 'Document Types'
+    },
+    {
+        extend: 'pdfHtml5',
+        text: '<i class="fa fa-file-pdf-o"> Pdf</i>',
+        download: 'open',
+        orientation: 'landscape',
+        pageSize: 'LEGAL'
+    },
+    {
+        extend: 'csvHtml5',
+        text: '<i class="fa fa-file-text-o"> Csv</i>',
+        title: 'Document Types'
+    },
+    {
+        extend: 'copyHtml5',
+        text: '<i class="fa fa-files-o"> Copy</i>'
+    },
+    {
+        extend: 'print',
+        text: '<i class="fa fa-print"> Print</i>'
+    }
+    //,
+    //{
+    //    extend: 'colvis',
+    //    text: 'Columns'
+    //}
+    ]
+});

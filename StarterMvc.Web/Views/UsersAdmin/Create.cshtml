@@ -4,7 +4,11 @@
     ViewBag.TitleSmall = "Application Security Management";
 }
 
-<h2>Create User</h2>
+<ol class="breadcrumb">
+    <li><a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+    <li><i class="glyphicon glyphicon-th-list"></i> Users</li>
+    <li class="active"><i class="glyphicon glyphicon-pencil"></i> Create User</li>
+</ol>
 
 @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {

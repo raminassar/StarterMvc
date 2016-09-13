@@ -15,7 +15,16 @@ namespace StarterMvc.Web
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
                         "~/Scripts/DataTables/dataTables.bootstrap.js",
-                        "~/ Scripts/AdminLTE/app.js"));
+                        "~/Scripts/DataTables/dataTables.buttons.min.js",
+                        "~/Scripts/DataTables/buttons.print.min.js",
+                        "~/Scripts/DataTables/buttons.colVis.min.js",
+                        "~/Scripts/DataTables/buttons.bootstrap.min.js",
+                        "~/Scripts/jszip.min.js",
+                        "~/Scripts/DataTables/buttons.html5.min.js",
+                        "~/Scripts/pdfmake/pdfmake.min.js",
+                        "~/Scripts/pdfmake/vfs_fonts.js",
+
+                        "~/Scripts/AdminLTE/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -28,6 +37,7 @@ namespace StarterMvc.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
+                      "~/Content/DataTables/css/buttons.bootstrap.css",
                       "~/Content/site.css"));
         }
     }

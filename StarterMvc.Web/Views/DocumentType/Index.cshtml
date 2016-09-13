@@ -11,7 +11,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table" id="documenttypes">
+<table class="table table-bordered table-hover" id="documenttypes">
     <thead>
     <tr>
         <th>
@@ -26,6 +26,12 @@
         <th></th>
     </tr>
     </thead>
+    @*<tfoot>
+        <tr>
+            <th>Code</th>
+            <th>Description</th>            
+        </tr>
+    </tfoot>*@
     <tbody>
         @foreach (var item in Model)
         {
@@ -55,8 +61,67 @@
 {
     <script>
         $(document)
-            .ready(function() {
-                $("#documenttypes").dataTable();
+            .ready(function () {               
+                var table = $('#documenttypes')
+                    .DataTable({
+                        dom: 'lBfrtip',
+                        lengthChange: true,                        
+                        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],                        
+                        buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                            title: 'Document Types'
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            text: '<i class="fa fa-file-pdf-o"> Pdf</i>',
+                            download: 'open',
+                            orientation: 'landscape',
+                            pageSize: 'LEGAL'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: '<i class="fa fa-file-text-o"> Csv</i>',
+                            title: 'Document Types'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: '<i class="fa fa-files-o"> Copy</i>'
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fa fa-print"> Print</i>'
+                        }
+                        //,
+                        //{
+                        //    extend: 'colvis',
+                        //    text: 'Columns'
+                        //}
+                        ]
+                    });
+
+                table.buttons()
+                    .container()
+                    .appendTo('#documenttypes_wrapper .col-sm-6:eq(0)');
+
+                //// Search
+                //// Setup - add a text input to each footer cell
+                //$('#documenttypes tfoot th').each(function () {
+                //    var title = $(this).text();
+                //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                //});
+
+                //// Apply the search
+                //// Apply the filter
+                //table.columns().eq(0).each(function (colIdx) {
+                //    $('input', table.column(colIdx).footer()).on('keyup change', function () {
+                //        table
+                //            .column(colIdx)
+                //            .search(this.value)
+                //            .draw();
+                //    });
+                //});
             });
     </script>
 }
